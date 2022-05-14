@@ -1,4 +1,4 @@
-package model; 
+package com; 
 import java.sql.*; 
 
 public class Report 
@@ -73,7 +73,7 @@ public class Report
 								
 								} 
 							// Prepare the html table to be displayed
-							output = "<table border='1'><tr><th>Report Number</th><th>Customer Category</th>" +
+							output = "<table border=\"1\" class=\"table\"><tr><th>Report Number</th><th>Customer Category</th>" +
 									"<th>Units Consumed</th>" + 
 									"<th>Description</th>" +
 									"<th>Update</th><th>Remove</th></tr>"; 
@@ -95,11 +95,10 @@ public class Report
 									output += "<td>" + units + "</td>"; 
 									output += "<td>" + reportDescription + "</td>"; 
 									// buttons
-									output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
-											+ "<td><form method='post' action='consumption_report.jsp'>"
-											+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-											+ "<input name='reportID' type='hidden' value='" + reportID 
-											+ "'>" + "</form></td></tr>"; 
+									output += "<td><input name='btnUpdate' type='button' value='Update' "
+											 + "class='btnUpdate btn btn-secondary' data-reportid='" + reportID + "'></td>"
+											 + "<td><input name='btnRemove' type='button' value='Remove' "
+											 + "class='btnRemove btn btn-danger' data-reportid='" + reportID + "'></td></tr>"; 
 							} 
 								con.close(); 
 								// Complete the html table
