@@ -48,12 +48,12 @@ public class Report
  
 						preparedStmt.execute(); 
 						con.close(); 
-						output = "Inserted successfully"; 
+						output = "Consumption Report Inserted successfully"; 
 					} 
 					
 					catch (Exception e) 
 					{ 
-						output = "Error while inserting the item."; 
+						output = "Error while inserting the consumption report."; 
 						System.err.println(e.getMessage()); 
 					} 
 					return output; 
@@ -96,7 +96,7 @@ public class Report
 									output += "<td>" + reportDescription + "</td>"; 
 									// buttons
 									output += "<td><input name='btnUpdate' type='button' value='Update' "
-											 + "class='btnUpdate btn btn-secondary' data-reportid='" + reportID + "'></td>"
+											 + "class='btnUpdate btn btn-success' data-reportid='" + reportID + "'></td>"
 											 + "<td><input name='btnRemove' type='button' value='Remove' "
 											 + "class='btnRemove btn btn-danger' data-reportid='" + reportID + "'></td></tr>"; 
 							} 
@@ -105,7 +105,7 @@ public class Report
 								output += "</table>"; 
 						} 
 						catch (Exception e){ 
-									output = "Error while reading the items."; 
+									output = "Error while reading the consumption reports."; 
 									System.err.println(e.getMessage()); 
 						} 
 						return output; 
