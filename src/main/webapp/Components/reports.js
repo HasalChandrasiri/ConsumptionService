@@ -5,53 +5,56 @@ $(document).on("click", "#btnSave", function(event)
  $("#alertSuccess").hide(); 
  $("#alertError").text(""); 
  $("#alertError").hide(); 
+ 
 // Form validation-------------------
 var status = validateReportForm(); 
 if (status != true) 
- { 
- $("#alertError").text(status); 
- $("#alertError").show(); 
- return; 
- } 
+	 { 
+	 $("#alertError").text(status); 
+	 $("#alertError").show(); 
+	 return; 
+	 } 
+ 
 // If valid------------------------
 var type = ($("#hidReportIDSave").val() == "") ? "POST" : "PUT"; 
- $.ajax( 
- { 
- url : "ReportsAPI", 
- type : type, 
- data : $("#formReport").serialize(), 
- dataType : "text", 
- complete : function(response, status) 
- { 
- onReportSaveComplete(response.responseText, status); 
- } 
- }); 
-});
+	 $.ajax( 
+	 { 
+	 url : "ReportsAPI", 
+	 type : type, 
+	 data : $("#formReport").serialize(), 
+	 dataType : "text", 
+	 complete : function(response, status) 
+	 { 
+	 onReportSaveComplete(response.responseText, status); 
+	 } 
+	 }); 
+	});
 
 function onReportSaveComplete(response, status)
 { 
 if (status == "success") 
- { 
- var resultSet = JSON.parse(response); 
- if (resultSet.status.trim() == "success") 
- { 
- $("#alertSuccess").text("Successfully saved."); 
- $("#alertSuccess").show(); 
- $("#divReportsGrid").html(resultSet.data); 
- } else if (resultSet.status.trim() == "error") 
- { 
- $("#alertError").text(resultSet.data); 
- $("#alertError").show(); 
- } 
+	 { 
+	 var resultSet = JSON.parse(response); 
+	 if (resultSet.status.trim() == "success") 
+	 { 
+	 $("#alertSuccess").text("Successfully saved."); 
+	 $("#alertSuccess").show(); 
+	 $("#divReportsGrid").html(resultSet.data); 
+	 } else if (resultSet.status.trim() == "error") 
+	 { 
+	 $("#alertError").text(resultSet.data); 
+	 $("#alertError").show(); 
+	 } 
  } else if (status == "error") 
- { 
- $("#alertError").text("Error while saving."); 
- $("#alertError").show(); 
- } else
+	 { 
+	 $("#alertError").text("Error while saving."); 
+	 $("#alertError").show(); 
+	 } else
  { 
  $("#alertError").text("Unknown error while saving.."); 
  $("#alertError").show(); 
  }
+ 
 $("#hidReportIDSave").val(""); 
 $("#formReport")[0].reset(); 
 }
@@ -66,8 +69,6 @@ $(document).on("click", ".btnUpdate", function(event)
 		 $("#units").val($(this).closest("tr").find('td:eq(2)').text()); 
 		 $("#reportDescription").val($(this).closest("tr").find('td:eq(3)').text()); 
 		});
-
-
 
 
 $(document).on("click", ".btnRemove", function(event)
@@ -88,27 +89,27 @@ $(document).on("click", ".btnRemove", function(event)
 function onReportDeleteComplete(response, status)
 { 
 if (status == "success") 
- { 
- var resultSet = JSON.parse(response); 
- if (resultSet.status.trim() == "success") 
- { 
- $("#alertSuccess").text("Successfully deleted."); 
- $("#alertSuccess").show(); 
- $("#divReportsGrid").html(resultSet.data); 
- } else if (resultSet.status.trim() == "error") 
- { 
- $("#alertError").text(resultSet.data); 
- $("#alertError").show(); 
- } 
- } else if (status == "error") 
- { 
- $("#alertError").text("Error while deleting."); 
- $("#alertError").show(); 
- } else
- { 
- $("#alertError").text("Unknown error while deleting.."); 
- $("#alertError").show(); 
- } 
+	 { 
+	 var resultSet = JSON.parse(response); 
+	 if (resultSet.status.trim() == "success") 
+		 { 
+		 $("#alertSuccess").text("Successfully deleted."); 
+		 $("#alertSuccess").show(); 
+		 $("#divReportsGrid").html(resultSet.data); 
+	 } else if (resultSet.status.trim() == "error") 
+		 { 
+		 $("#alertError").text(resultSet.data); 
+		 $("#alertError").show(); 
+		 } 
+	 } else if (status == "error") 
+	 { 
+		 $("#alertError").text("Error while deleting."); 
+		 $("#alertError").show(); 
+	 } else
+		 { 
+		 $("#alertError").text("Unknown error while deleting.."); 
+		 $("#alertError").show(); 
+		 } 
 }
 
 
@@ -117,14 +118,14 @@ function validateReportForm()
 {
 	// REPORT NUMBER
 	if ($("#reportNo").val().trim() == "")
-	{
-	return "Insert Report Number.";
-	}
+		{
+		return "Insert Report Number.";
+		}
 	// CATEGORY
-	if ($("#category").val().trim() == "")
-	{
-	return "Insert Category.";
-}
+		if ($("#category").val().trim() == "")
+		{
+		return "Insert Category.";
+	}
 
 // UNITS-------------------------------
 if ($("#units").val().trim() == ""){
@@ -133,17 +134,17 @@ if ($("#units").val().trim() == ""){
 		// is numerical value
 		var tmpUnits = $("#units").val().trim();
 		if (!$.isNumeric(tmpUnits))
-	{
-	return "Insert a numerical value for Units.";
-	}
+			{
+			return "Insert a numerical value for Units.";
+			}
 		
 // convert to decimal price
 $("#units").val(parseFloat(tmpUnits).toFixed(2));
 
 // REPORT DESCRIPTION------------------------
-if ($("#reportDescription").val().trim() == ""){
-	
-	return "Insert Report Description.";
-}
+	if ($("#reportDescription").val().trim() == ""){
+		
+		return "Insert Report Description.";
+	}
 	return true;
 }
