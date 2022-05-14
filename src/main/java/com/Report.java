@@ -96,7 +96,7 @@ public class Report
 									output += "<td>" + reportDescription + "</td>"; 
 									// buttons
 									output += "<td><input name='btnUpdate' type='button' value='Update' "
-											 + "class='btnUpdate btn btn-success' data-reportid='" + reportID + "'></td>"
+											 + "class='btnUpdate btn btn-warning' data-reportid='" + reportID + "'></td>"
 											 + "<td><input name='btnRemove' type='button' value='Remove' "
 											 + "class='btnRemove btn btn-danger' data-reportid='" + reportID + "'></td></tr>"; 
 							} 
@@ -133,12 +133,12 @@ public class Report
 							// execute the statement
 							preparedStmt.execute(); 
 							con.close(); 
-							output = "Updated successfully"; 
+							output = "Consumption Report Updated successfully"; 
 					} 
 					
 					catch (Exception e){ 
 						
-						output = "Error while updating the item."; 
+						output = "Error while updating the consumption report."; 
 						System.err.println(e.getMessage()); 
 						
 					} 
@@ -165,11 +165,11 @@ public class Report
 						// execute the statement
 						preparedStmt.execute(); 
 						con.close(); 
-						output = "Deleted successfully"; 
+						output = "Consumption Report Deleted successfully"; 
 					} 
 					
 					catch (Exception e){ 
-						output = "Error while deleting the item."; 
+						output = "Error while deleting the consumption report."; 
 						System.err.println(e.getMessage()); 
 					} 
 					return output; 
